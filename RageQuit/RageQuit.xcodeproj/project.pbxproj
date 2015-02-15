@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ABCBB7961A9100B00083AEEC /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBB7951A9100B00083AEEC /* ApplicationServices.framework */; };
 		ABF0C6381A901CD400FAD214 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF0C6371A901CD400FAD214 /* AppDelegate.m */; };
 		ABF0C63A1A901CD400FAD214 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF0C6391A901CD400FAD214 /* main.m */; };
 		ABF0C63C1A901CD400FAD214 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABF0C63B1A901CD400FAD214 /* Images.xcassets */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		ABCBB7951A9100B00083AEEC /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		ABF0C6311A901CD400FAD214 /* RageQuit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RageQuit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABF0C6351A901CD400FAD214 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABF0C6361A901CD400FAD214 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -47,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABCBB7961A9100B00083AEEC /* ApplicationServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +66,7 @@
 		ABF0C6281A901CD400FAD214 = {
 			isa = PBXGroup;
 			children = (
+				ABCBB7951A9100B00083AEEC /* ApplicationServices.framework */,
 				ABF0C6331A901CD400FAD214 /* RageQuit */,
 				ABF0C6471A901CD400FAD214 /* RageQuitTests */,
 				ABF0C6321A901CD400FAD214 /* Products */,
@@ -416,6 +420,7 @@
 				ABF0C6501A901CD400FAD214 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ABF0C6511A901CD400FAD214 /* Build configuration list for PBXNativeTarget "RageQuitTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +429,7 @@
 				ABF0C6531A901CD400FAD214 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
