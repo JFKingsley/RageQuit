@@ -26,8 +26,4 @@
     
     return menu;
 }
-
-- (void) about {[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"https://github.com/JFKingsley/RageQuit"]];}
-- (void) feedback {[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"https://github.com/JFKingsley/RageQuit/issues"]];}
-- (void) quit {[NSApp terminate:self];}
 @end
