@@ -16,7 +16,11 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
+    statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+    [statusItem setTitle:@""];
+    [statusItem setImage:[NSImage imageNamed:@"MenuIcon"]];
+    [statusItem setHighlightMode:YES];
+    [statusItem setMenu:[Extras getMenu]];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
