@@ -35,6 +35,11 @@
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"https://github.com/JFKingsley/RageQuit/issues"]];
 }
 
+- (void) changeSetting: (id) menuItem {
+    [[NSUserDefaults standardUserDefaults] setInteger:[(NSNumber *)[(NSMenuItem *)menuItem representedObject] integerValue] forKey:@"currentSetting"];
+    [statusItem setMenu:[Extras getMenu]];
+}
+
 - (void) quit {
     [NSApp terminate:self];
 }

@@ -10,3 +10,7 @@
 "about" = "About";
 "feedback" = "Feedback";
 "quit" = "Quit";
+
+"popup" = "Display a popup";
+"pressAndHold" = "Press and hold (for 2s)";
+"disableHotkey" = "Disable Hotkey";
