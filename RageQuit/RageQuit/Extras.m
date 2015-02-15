@@ -9,6 +9,10 @@
 #import "Extras.h"
 
 @implementation Extras
+
+BOOL isCmdPressed = NO;
+BOOL isSecondRound = NO;
+
 + (NSMenu*) getMenu {
     NSMenu *menu = [[NSMenu alloc] init];
     
@@ -55,5 +59,30 @@
     [menu addItem:quit];
     
     return menu;
+}
+
+- (void) bindKeyEvent {
+    NSDictionary *options = @{(id)CFBridgingRelease(kAXTrustedCheckOptionPrompt): @YES};
+    BOOL accessibilityEnabled = AXIsProcessTrustedWithOptions((CFDictionaryRef)CFBridgingRetain(options));
+    
+    CFRunLoopSourceRef runLoopSource;
+    CFMachPortRef eventTap = CGEventTapCreate(kCGHIDEventTap, kCGHeadInsertEventTap, kCGEventTapOptionDefault, kCGEventMaskForAllEvents, CGKeypressEventCallback, (__bridge void *)self);
+    if (!eventTap) {
+        NSLog(@"Couldn't create event tap!");
+        exit(1);
+    }
+    runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, 0);
+    CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopCommonModes);
+    CGEventTapEnable(eventTap, true);
+}
+
+CGEventRef CGKeypressEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon) {
+    if ((type != kCGEventKeyDown) && (type != kCGEventKeyUp) && (type !=kCGEventFlagsChanged))
+        return event;
+    //The incoming keycode.
+    CGKeyCode keycode = (CGKeyCode) CGEventGetIntegerValueField( event, kCGKeyboardEventKeycode);
+    fprintf(stderr, "keycode %x  \n" , (int) keycode);
+    
+    return event;
 }
 @end

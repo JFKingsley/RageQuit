@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <AppKit/AppKit.h>
+#import <Carbon/Carbon.h>
+#import <ApplicationServices/ApplicationServices.h>
 
 @interface Extras : NSObject
 
 + (NSMenu*) getMenu;
+- (void) bindKeyEvent;
 
 @end

@@ -21,6 +21,9 @@
     [statusItem setImage:[NSImage imageNamed:@"MenuIcon"]];
     [statusItem setHighlightMode:YES];
     [statusItem setMenu:[Extras getMenu]];
+    
+    Extras *extras = [[Extras alloc] init];
+    [extras bindKeyEvent];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
