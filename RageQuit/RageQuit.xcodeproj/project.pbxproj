@@ -13,6 +13,7 @@
 		ABF0C63F1A901CD400FAD214 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABF0C63D1A901CD400FAD214 /* MainMenu.xib */; };
 		ABF0C64B1A901CD400FAD214 /* RageQuitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF0C64A1A901CD400FAD214 /* RageQuitTests.m */; };
 		ABF0C6561A901D3D00FAD214 /* Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF0C6551A901D3D00FAD214 /* Extras.m */; };
+		ABF0C65C1A9024A500FAD214 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ABF0C65E1A9024A500FAD214 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		ABF0C64A1A901CD400FAD214 /* RageQuitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RageQuitTests.m; sourceTree = "<group>"; };
 		ABF0C6541A901D3D00FAD214 /* Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Extras.h; sourceTree = "<group>"; };
 		ABF0C6551A901D3D00FAD214 /* Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Extras.m; sourceTree = "<group>"; };
+		ABF0C65D1A9024A500FAD214 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				ABF0C63B1A901CD400FAD214 /* Images.xcassets */,
 				ABF0C63D1A901CD400FAD214 /* MainMenu.xib */,
 				ABF0C6341A901CD400FAD214 /* Supporting Files */,
+				ABF0C65E1A9024A500FAD214 /* Localizable.strings */,
 			);
 			path = RageQuit;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABF0C63C1A901CD400FAD214 /* Images.xcassets in Resources */,
+				ABF0C65C1A9024A500FAD214 /* Localizable.strings in Resources */,
 				ABF0C63F1A901CD400FAD214 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,6 +250,14 @@
 				ABF0C63E1A901CD400FAD214 /* Base */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		ABF0C65E1A9024A500FAD214 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ABF0C65D1A9024A500FAD214 /* Base */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
