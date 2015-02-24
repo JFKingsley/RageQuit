@@ -8,10 +8,11 @@
 
 #import "Extras.h"
 
-@implementation Extras
+@implementation Extras {
+    CFMachPortRef eventTap;
+}
 
-BOOL isCmdPressed = NO;
-BOOL isSecondRound = NO;
+BOOL isCmdHeld = NO;
 
 + (NSMenu*) getMenu {
     NSMenu *menu = [[NSMenu alloc] init];
@@ -66,7 +67,7 @@ BOOL isSecondRound = NO;
     BOOL accessibilityEnabled = AXIsProcessTrustedWithOptions((CFDictionaryRef)CFBridgingRetain(options));
     
     CFRunLoopSourceRef runLoopSource;
-    CFMachPortRef eventTap = CGEventTapCreate(kCGHIDEventTap, kCGHeadInsertEventTap, kCGEventTapOptionDefault, kCGEventMaskForAllEvents, CGKeypressEventCallback, (__bridge void *)self);
+    eventTap = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, kCGEventTapOptionDefault, kCGEventMaskForAllEvents, CGKeypressEventCallback, (__bridge void *)self);
     if (!eventTap) {
         NSLog(@"Couldn't create event tap!");
         exit(1);
@@ -77,11 +78,36 @@ BOOL isSecondRound = NO;
 }
 
 CGEventRef CGKeypressEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon) {
-    if ((type != kCGEventKeyDown) && (type != kCGEventKeyUp) && (type !=kCGEventFlagsChanged))
+    if ((type != kCGEventKeyDown) && (type != kCGEventKeyUp) && (type != kCGEventFlagsChanged))
         return event;
-    //The incoming keycode.
+    //The incoming keycode and bitwise XOR flags to check command
     CGKeyCode keycode = (CGKeyCode) CGEventGetIntegerValueField( event, kCGKeyboardEventKeycode);
-    fprintf(stderr, "keycode %x  \n" , (int) keycode);
+    BOOL commandKeyIsPressed = (CGEventGetFlags(event) & kCGEventFlagMaskCommand) == kCGEventFlagMaskCommand;
+    
+    if(keycode == 12 && commandKeyIsPressed) {
+        if([[NSUserDefaults standardUserDefaults] integerForKey:@"currentSetting"] == 1) {
+            NSRunningApplication *currentApp = [[[NSWorkspace sharedWorkspace] activeApplication] objectForKey:@"NSWorkspaceApplicationKey"];
+            
+            NSAlert *alert = [NSAlert alertWithMessageText:@"Are you sure you want to quit this application?"
+                                             defaultButton:@"OK"
+                                           alternateButton:@"Cancel"
+                                               otherButton:nil
+                                 informativeTextWithFormat:@""];
+            NSInteger button = [alert runModal];
+            if(button == NSAlertDefaultReturn) {
+                [currentApp terminate];
+            }
+            return NULL;
+        }
+        
+        if([[NSUserDefaults standardUserDefaults] integerForKey:@"currentSetting"] == 2) {
+            return event;
+        }
+        
+        if([[NSUserDefaults standardUserDefaults] integerForKey:@"currentSetting"] == 3) {
+            return NULL;
+        }
+    }
     
     return event;
 }
