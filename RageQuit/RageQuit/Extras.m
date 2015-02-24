@@ -13,6 +13,7 @@
 }
 
 BOOL isCmdHeld = NO;
+BOOL isAlertShowing = NO;
 
 + (NSMenu*) getMenu {
     NSMenu *menu = [[NSMenu alloc] init];
@@ -66,8 +67,20 @@ BOOL isCmdHeld = NO;
     NSDictionary *options = @{(id)CFBridgingRelease(kAXTrustedCheckOptionPrompt): @YES};
     BOOL accessibilityEnabled = AXIsProcessTrustedWithOptions((CFDictionaryRef)CFBridgingRetain(options));
     
+    if(!accessibilityEnabled) {
+        NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"rebootApp", nil)
+                                         defaultButton:NSLocalizedString(@"ok", nil)
+                                       alternateButton:nil
+                                           otherButton:nil
+                             informativeTextWithFormat:@""];
+        NSInteger button = [alert runModal];
+        if(button == NSAlertDefaultReturn) {
+            exit(0);
+        }
+    }
+    
     CFRunLoopSourceRef runLoopSource;
-    eventTap = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, kCGEventTapOptionDefault, kCGEventMaskForAllEvents, CGKeypressEventCallback, (__bridge void *)self);
+    eventTap = CGEventTapCreate(kCGHIDEventTap, kCGHeadInsertEventTap, kCGEventTapOptionDefault, kCGEventMaskForAllEvents, CGKeypressEventCallback, (__bridge void *)self);
     if (!eventTap) {
         NSLog(@"Couldn't create event tap!");
         exit(1);
@@ -86,16 +99,22 @@ CGEventRef CGKeypressEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
     
     if(keycode == 12 && commandKeyIsPressed) {
         if([[NSUserDefaults standardUserDefaults] integerForKey:@"currentSetting"] == 1) {
-            NSRunningApplication *currentApp = [[[NSWorkspace sharedWorkspace] activeApplication] objectForKey:@"NSWorkspaceApplicationKey"];
-            
-            NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"areYouSure", nil)
-                                             defaultButton:NSLocalizedString(@"ok", nil)
-                                           alternateButton:NSLocalizedString(@"cancel", nil)
-                                               otherButton:nil
-                                 informativeTextWithFormat:@""];
-            NSInteger button = [alert runModal];
-            if(button == NSAlertDefaultReturn) {
-                [currentApp terminate];
+            if(!isAlertShowing) {
+                NSRunningApplication *currentApp = [[[NSWorkspace sharedWorkspace] activeApplication] objectForKey:@"NSWorkspaceApplicationKey"];
+                
+                NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"areYouSure", nil)
+                                                 defaultButton:NSLocalizedString(@"ok", nil)
+                                               alternateButton:NSLocalizedString(@"cancel", nil)
+                                                   otherButton:nil
+                                     informativeTextWithFormat:@""];
+                isAlertShowing = YES;
+                NSInteger button = [alert runModal];
+                if(button == NSAlertDefaultReturn) {
+                    isAlertShowing = NO;
+                    [currentApp terminate];
+                }else if(button == NSAlertAlternateReturn) {
+                    isAlertShowing = NO;
+                }
             }
             return NULL;
         }

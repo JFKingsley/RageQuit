@@ -16,5 +16,6 @@
 "disableHotkey" = "Disable Hotkey";
 
 "areYouSure" = "Are you sure you want to quit this application?";
+"rebootApp" = "Please reboot the app after enabling accessiblity to enable.";
 "ok" = "OK";
 "cancel" = "Cancel";

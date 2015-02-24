@@ -16,7 +16,7 @@ Simple, just select a mode (Disable hotkey or confirmation popup), and RageQuit 
 
 ##Acknowledgements
 
-Thanks to [Eytan Schulman](https://twitter.com/eytanschulman) for kicking me in the butt to complete this project, and providing the punchy icon. 
+Thanks to [Eytan Schulman](https://twitter.com/eytanschulman) for ~~kicking me in the butt~~ motivating me to complete this project, and providing the punchy icon. 
 
 ##License
 
