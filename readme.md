@@ -8,7 +8,7 @@ Built in a night.
 
 ##Installation:
 
-Simply download the .app [here](http://test.com), allow it access to accessiblity settings, and it'll happily sit in your menu bar waiting for that slip-up.
+Simply download the .app [here](https://github.com/JFKingsley/RageQuit/blob/master/RageQuit.zip?raw=true), allow it access to accessiblity settings, and it'll happily sit in your menu bar waiting for that slip-up.
 
 ##Usage:
 
