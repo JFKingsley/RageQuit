@@ -88,9 +88,9 @@ CGEventRef CGKeypressEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
         if([[NSUserDefaults standardUserDefaults] integerForKey:@"currentSetting"] == 1) {
             NSRunningApplication *currentApp = [[[NSWorkspace sharedWorkspace] activeApplication] objectForKey:@"NSWorkspaceApplicationKey"];
             
-            NSAlert *alert = [NSAlert alertWithMessageText:@"Are you sure you want to quit this application?"
-                                             defaultButton:@"OK"
-                                           alternateButton:@"Cancel"
+            NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"areYouSure", nil)
+                                             defaultButton:NSLocalizedString(@"ok", nil)
+                                           alternateButton:NSLocalizedString(@"cancel", nil)
                                                otherButton:nil
                                  informativeTextWithFormat:@""];
             NSInteger button = [alert runModal];
